@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"os"
+	"log"
 )
 
 type TestVersion struct {
@@ -16,10 +17,14 @@ func main() {
 }
 
 func apiVersion(rw http.ResponseWriter, req *http.Request) {
+	
+	httpMethod := req.Method
+	env := os.Getenv("env_test")
+
+	log.Printf("Request method: %s | API version: %s", httpMethod, env)
 
 	rw.Header().Set("Content-Type", "application/json")
 
-	env := os.Getenv("env_test")
 	versionResponse := TestVersion{
 		Version: env,
 	}
