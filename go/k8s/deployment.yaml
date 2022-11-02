@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
       - name: go-k8s-example
-        image: felipes102/go-k8s-example:2.0
+        image: felipes102/go-k8s-example:2.1
+        envFrom:
+          - configMapRef:
+              name: test-env
         ports:
           - containerPort: 8080
     
